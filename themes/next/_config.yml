@@ -81,7 +81,7 @@ creative_commons:
 # Value before `||` delimiter is the target link, value after `||` delimiter is the name of Font Awesome icon.
 # External url should start with http:// or https://
 menu:
-  home: / || fa fa-home
+  home: http://106.54.82.167/ || fa fa-home
   tags: /tags/ || fa fa-tags
   categories: /categories/ || fa fa-th
   archives: /archives/ || fa fa-archive
@@ -164,9 +164,9 @@ links_settings:
   layout: block
 
 links:
-  LeetCode: https://example.com
+  LeetCode: https://leetcode-cn.com/u/pedestrian-fay/
   一个学姐的博客: https://bluezoe.github.io/
-  Liweiwei的LeetCode刷题记录: https://leetcode-cn.com/u/pedestrian-fay/
+  Liweiwei的LeetCode刷题记录: https://www.yuque.com/liweiwei1419/algo/
 
 # Table of Contents in the Sidebar
 # Front-matter variable (unsupport wrap expand_all).
@@ -424,12 +424,12 @@ font:
   global:
     external: true
     family: Noto Serif SC
-    size:
+    size: 20px
 
   # Font settings for site title (.site-title).
   title:
     external: true
-    family: Noto Serif SC
+    family: Nanum Gothic
     size:
 
   # Font settings for headlines (<h1> to <h6>).
@@ -731,7 +731,7 @@ algolia_search:
 # Local Search
 # Dependencies: https://github.com/next-theme/hexo-generator-searchdb
 local_search:
-  enable: false
+  enable: true
   # If auto, trigger search by changing input.
   # If manual, trigger search by pressing enter key or search button.
   trigger: auto
@@ -835,7 +835,7 @@ nprogress:
 # Canvas ribbon
 # For more information: https://github.com/hustcc/ribbon.js
 canvas_ribbon:
-  enable: false
+  enable: true
   size: 300 # The width of the ribbon
   alpha: 0.6 # The transparency of the ribbon
   zIndex: -1 # The display level of the ribbon
