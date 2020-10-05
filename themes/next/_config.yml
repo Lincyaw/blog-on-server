@@ -177,7 +177,7 @@ toc:
   # If true, all words will placed on next lines if header width longer then sidebar width.
   wrap: true
   # If true, all level of TOC in a post will be displayed, rather than the activated part of it.
-  expand_all: false
+  expand_all: true
   # Maximum heading depth of generated toc.
   max_depth: 6
 
@@ -436,7 +436,7 @@ font:
   headings:
     external: true
     family: Noto Serif SC
-    size: 35px
+    size:
 
   # Font settings for posts (.post-body).
   posts:
