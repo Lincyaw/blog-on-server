@@ -1,5 +1,5 @@
 # Github Page
-使用主题: [maupassant](https://github.com/tufu9441/maupassant-hexo)
+使用主题: [Next](https://github.com/theme-next/hexo-theme-next)
 
 主页链接: [Wateramelon](https://Lincyaw.github.io)
 
@@ -31,6 +31,10 @@ sudo n stable  //安装稳定版
 
 npm install -g hexo-cli  //安装hexo
 npm install hexo-deployer-git --save //安装deployer工具
+
+
+npm uninstall hexo-renderer-marked --save   //自带的公式渲染不太好
+npm install hexo-renderer-pandoc --save    //用pandoc
 ```
 
 上传三板斧
