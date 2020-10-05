@@ -33,6 +33,8 @@ npm install -g hexo-cli  //安装hexo
 npm install hexo-deployer-git --save //安装deployer工具
 
 
+wget https://github.com/jgm/pandoc/releases/download/2.10.1/pandoc-2.10.1-1-amd64.deb   //linux中下载pandoc , win中自行下载
+sudo dpkg -i pandoc-2.10.1-1-amd64.deb
 npm uninstall hexo-renderer-marked --save   //自带的公式渲染不太好
 npm install hexo-renderer-pandoc --save    //用pandoc
 ```
