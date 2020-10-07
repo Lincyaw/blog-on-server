@@ -3,7 +3,9 @@
 
 主页链接: [Wateramelon](https://Lincyaw.github.io)
 
-注意事项: 记得把源代码和发布出来的page放到不同的branch, 或者不同的仓库。
+网站地址: [Lincyaw](www.lincyaw.xyz)
+
+
 
 ---
 
@@ -44,4 +46,10 @@ npm install hexo-renderer-pandoc --save    //用pandoc
 ```sh
 hexo clean && hexo g -d   // 清除已有文件+生成+部署
 ```
+
+---
+
+自己安装的[参考文章](https://zhuanlan.zhihu.com/p/120743882)
+
+在装好之后发现别人用[宝塔面板](https://cloud.tencent.com/developer/article/1662792)做的也太轻松了吧, 我搞那个hook搞了半天QAQ. 但是必须要centos用
 
