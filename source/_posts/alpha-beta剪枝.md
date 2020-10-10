@@ -90,7 +90,7 @@ mathjax: true
 
 如下图中，在点B时，是小方选择；先不看上面标注的$\alpha \beta$，自己考虑一下在这种情况下小方能够拿到的石子数量最多是最少呢？
 
-![https://jlice-top.oss-cn-beijing.aliyuncs.com/4700cf58002211e98666509a4c21c90b.png](https://img-blog.csdnimg.cn/20190528095116846.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlbmppYW5tdXJhbg==,size_16,color_FFFFFF,t_70)
+![base](https://img-blog.csdnimg.cn/20190528095116846.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlbmppYW5tdXJhbg==,size_16,color_FFFFFF,t_70)
 
 很显然，小方应该走左边的路径； 因为小圆一定是会让小方拿到的石子数越少越好，因此结点3的子节点中**最小的数**就是小方能够拿到的**最大的石子数**；同理，如果走右边的路，结点C中的最小的数就是小方能拿到的最大的数：2；
 
@@ -112,7 +112,7 @@ $\beta$, 最小倒推值, 就是让**小圆**在这个位置上的最大收益, 
 
 如下图中的正方形和圆形里都有一个数字, 即为倒推值; 在这个圆形或者正方形边上有$\alpha$和$\beta$
 
-![https://jlice-top.oss-cn-beijing.aliyuncs.com/47f88870002211e99bfa509a4c21c90b.png](https://img-blog.csdnimg.cn/20190528095119641.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlbmppYW5tdXJhbg==,size_16,color_FFFFFF,t_70)
+![full](https://img-blog.csdnimg.cn/20190528095119641.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlbmppYW5tdXJhbg==,size_16,color_FFFFFF,t_70)
 
 因为整个博弈**过程始终站在某一方的立场上**, 这里始终站在小方的立场上, 所以在小方做选择的时候更新$\alpha$, 小圆做选择的时候更新$\beta$,  也就是每一层只更新一个符号。
 
