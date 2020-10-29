@@ -81,7 +81,7 @@ creative_commons:
 # Value before `||` delimiter is the target link, value after `||` delimiter is the name of Font Awesome icon.
 # External url should start with http:// or https://
 menu:
-  home: http://106.54.82.167/ || fa fa-home
+  home: https://lincyaw.xyz/ || fa fa-home
   tags: /tags/ || fa fa-tags
   categories: /categories/ || fa fa-th
   archives: /archives/ || fa fa-archive
@@ -167,7 +167,7 @@ links:
   LeetCode: https://leetcode-cn.com/u/pedestrian-fay/
   一个学姐的博客: https://bluezoe.github.io/
   Liweiwei的LeetCode刷题记录: https://www.yuque.com/liweiwei1419/algo/
-  算法4在线阅读: http://106.54.82.167/suanfa/index.html
+  算法4在线阅读: http://lincyaw.xyz/suanfa/index.html
   算法4在线阅读备用: https://lincyawblog-18ba58-1257468850.tcloudbaseapp.com/suanfa/index.html
 
 # Table of Contents in the Sidebar
@@ -222,16 +222,17 @@ footer:
 
   # Beian ICP and gongan information for Chinese users. See: https://beian.miit.gov.cn, http://www.beian.gov.cn
   beian:
-    enable: false
-    icp:
+    enable: true
+    icp:  浙ICP备2020036574号-1
     # The digit in the num of gongan beian.
-    gongan_id:
+    gongan_id: 44030502006206
     # The full num of gongan beian.
-    gongan_num:
+    gongan_num: 粤公网安备 44030502006206号
     # The icon for gongan beian. See: http://www.beian.gov.cn/portal/download
-    gongan_icon_url:
+    gongan_icon_url: https://lincyaw.xyz/beian.png
 
-
+		 	
+		 
 # ---------------------------------------------------------------
 # Post Settings
 # See: https://theme-next.js.org/docs/theme-settings/posts

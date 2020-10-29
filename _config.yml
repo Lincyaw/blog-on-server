@@ -13,7 +13,7 @@ timezone: ''
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://example.com/child' and root as '/child/'
-url: https://106.54.82.167/hexo
+url: https://lincyaw.xyz/hexo
 root: /hexo/
 permalink: :year/:month/:day/:title/
 permalink_defaults:

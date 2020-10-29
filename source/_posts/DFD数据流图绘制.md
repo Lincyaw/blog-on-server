@@ -32,7 +32,7 @@ categories:
 - 在分层的数据流图中，加工还应编号 
 - 三种类型：计算机自动加工、手工加工、人机协作的加工
 
-![通常用圆形表示](http://106.54.82.167/blogimg/dataprocess.png)
+![通常用圆形表示](https://lincyaw.xyz/blogimg/dataprocess.png)
 
 
 
@@ -42,7 +42,7 @@ categories:
 
 通常以名词命名。
 
-![常见表示形式](http://106.54.82.167/blogimg/datastorage.png)
+![常见表示形式](https://lincyaw.xyz/blogimg/datastorage.png)
 
 ### 外部实体
 
@@ -52,7 +52,7 @@ categories:
 - 以名词短语命名
 - 不能直接访问数据存储
 
-![常见表示形式](http://106.54.82.167/blogimg/externalentity.png)
+![常见表示形式](https://lincyaw.xyz/blogimg/externalentity.png)
 
 ### 数据流
 
@@ -67,7 +67,7 @@ categories:
   - 加工与加工之间； 
   - 加工与数据存储之间
 
-![常用箭头表示](http://106.54.82.167/blogimg/dataflow.png)
+![常用箭头表示](https://lincyaw.xyz/blogimg/dataflow.png)
 
 ## DFD的层次性
 
@@ -89,7 +89,7 @@ DFD的两种类型：
 - **只包含一个加工**，用以表示被开发的系统，然后考虑该系统有哪些输入数据、输出数据流
 - 加工编号：0
 
-![顶层dfd](http://106.54.82.167/blogimg/topdfd.png)
+![顶层dfd](https://lincyaw.xyz/blogimg/topdfd.png)
 
 ### 0层DFD
 
@@ -97,7 +97,7 @@ DFD的两种类型：
 
 - 加工编号：1、2、…、n
 
-![0层dfd](http://106.54.82.167/blogimg/zerodfd.png)
+![0层dfd](https://lincyaw.xyz/blogimg/zerodfd.png)
 
 
 
@@ -169,7 +169,7 @@ DFD的两种类型：
 
 根据上面的描述要求, 我们需要圆形、矩形、泳道等一系列单元，先从左边的图形中找到他们。
 
-![toolbox](http://106.54.82.167/blogimg/suindex.png)
+![toolbox](https://lincyaw.xyz/blogimg/suindex.png)
 
 
 
@@ -177,7 +177,7 @@ DFD的两种类型：
 
 然后完成连接即可
 
-![example](http://106.54.82.167/blogimg/ex.png)
+![example](https://lincyaw.xyz/blogimg/ex.png)
 
 
 
