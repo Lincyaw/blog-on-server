@@ -1,8 +1,11 @@
 ---
+
+
 title: Chapter 15 面向对象程序设计
 date: 2020-12-05 09:51:36
 tags: 
 	- Primer C++
+	- C++ Primer Plus
 	- 虚函数
 categories: 
 	- 学习
@@ -98,7 +101,7 @@ protected:
 
 ## 定义派生类
 
-上面的`Quote`基类将`net_price`定义为虚函数，表明派生类必须重载上述函数。
+上面的`Quote`基类将`net_price`定义为虚函数，表明派生类必须重写上述函数。（通过后面虚函数的工作原理的例子，好像不是必须要重写，可以进行操作）
 
 ```C++
 class Bulk_quote: public Quote {
@@ -159,6 +162,175 @@ Bulk_quote(const std::string& book， double p，
 override说明符显式指定该函数为覆盖的虚函数
 
 final说明符指定该函数不能再被覆盖
+
+## 虚函数的工作原理
+
+> C++ Primer Plus 504页 && [CSDN](https://blog.csdn.net/lihao21/article/details/50688337)
+
+通常，编译器处理虚函数的方法是∶给每个对象添加一个隐藏成员。隐藏成员中保存了一个**指向函数地址数组的指针**。这种数组称为**虚函数表**（vitual function table，vtbl）。虚函数表中存储了为类对象进行声明的虚函数的地址。
+
+例如，**基类对象**包含一个指针，该指针指向**基类**中所有虚函数的地址表。**派生类对象**将包含一个指向独立地址表的指针。如果**派生类**提供了虚函数的新定义，该虚函数表将保存新函数的地址;如果**派生类**没有重新定义虚函数，该`vtbl`将保存函数原始版本的地址。如果**派生类**定义了新的虚函数，则该函数的地址也将被添加到`vtbl`中。注意，无论类中包含的虚函数是1个还是 10个，都只需要在对象中添加1个地址成员，只是表的大小不同而已。
+
+虚表是属于**类**的，而**不属于**某个具体的对象，一个类只需要一个虚表即可。同一个类的所有对象都使用同一个虚表。 如上所说，为了指定对象的虚表，对象内部包含一个虚表的指针，来指向自己所使用的虚表。**为了让每个包含虚表的类的对象都拥有一个虚表指针**，编译器在类中添加了一个指针`*__vptr`，用来指向虚表。这样，当类的对象在创建时便拥有了这个指针，且这个指针的值会自动被设置为指向类的虚表。
+
+为了方便，下面给出博文中修改后的代码（原博中代码版本已经有点旧了）
+
+```C++
+class A {
+public:
+    virtual void vfunc1(){
+        cout<<"A's vfunc1"<<endl;
+    };
+    virtual void vfunc2() {
+        cout<<"A's vfunc2"<<endl;
+    };
+    void func1(){
+        cout<<"A's func1"<<endl;
+    };
+    void func2(){
+        cout<<"A's func2"<<endl;
+    };
+};
+
+class B : public A {
+public:
+    void vfunc1() override{
+        cout<<"B's vfunc1"<<endl;
+    }
+    void func2(){
+        cout<<"B's func2"<<endl;
+    };
+};
+
+class C: public B {
+public:
+    void vfunc2() override{
+        cout<<"C's vfunc2"<<endl;
+    }
+    void func2(){
+        cout<<"C's func2"<<endl;
+    };
+};
+```
+
+下面运行以下代码:
+
+```C++
+int main() {
+    B bOb;
+    bOb.vfunc1();
+    bOb.vfunc2();
+    bOb.func1();
+    bOb.func2();
+    return 0;
+}
+```
+
+运行结果为:
+
+```C++
+B's vfunc1
+A's vfunc2
+A's func1
+B's func2
+```
+
+很显然，结果和我们想象的一样。B重写了A的`vfunc1`，因此调用的是B重写后的函数。B又写了一个和A一样的`func2`，所以结果是B写的函数的结果。但是这里不提倡这种行为，编译器会提醒如下，意思就是建议我们把A中的`func2`改成虚函数。
+
+```C++
+Clang-Tidy: Function 'func2' hides a non-virtual function from class 'A'
+```
+
+再看下面的代码，唯一不同是修改了第2和3行的代码
+
+```C++
+int main() {
+    B bOb2;
+    A &bOb = bOb2;
+    bOb.vfunc1();
+    bOb.vfunc2();
+    bOb.func1();
+    bOb.func2();
+    return 0;
+}
+```
+
+运行结果为，体现了动态绑定的特性。B重写了`vfunc1`，使用A类型去通过引用来调用B对象中的`vfunc1`，从而使得调用的`vfunc1`是B类中的`vfunc1`.
+
+```C++
+B's vfunc1
+A's vfunc2
+A's func1
+A's func2
+```
+
+将B替换为C，运行以下代码
+
+```C++
+int main() {
+    C bOb;
+    bOb.vfunc1();
+    bOb.vfunc2();
+    bOb.func1();
+    bOb.func2();
+    return 0;
+}
+```
+
+```C++
+// 结果
+B's vfunc1
+C's vfunc2
+A's func1
+C's func2
+```
+
+```C++
+int main() {
+    C bOb2;
+    A &bOb = bOb2;
+    bOb.vfunc1();
+    bOb.vfunc2();
+    bOb.func1();
+    bOb.func2();
+    return 0;
+}
+```
+```C++
+// 结果
+B's vfunc1
+C's vfunc2
+A's func1
+A's func2
+```
+
+现在我们对调用的结果有了一些了解，接下来开始看虚函数表的构造图。
+当B和C还没有重写虚函数时，虚函数表是长这样的。类A，B，C都指向了A的虚函数。
+
+<img src="https://lincyaw.xyz/blogimg/vtbl0.png" alt="图1" style="zoom:40%;" />
+
+由于B重写了A的vfunc1，C继承了B，又重写了B的vfunc2（即重写了A的vfunc2），所以此时的指向应该如下
+
+<img src="https://lincyaw.xyz/blogimg/vtbl1.png" alt="图1" style="zoom:40%;" />
+
+这个现象其实很好理解，儿子只会去改爸爸的虚函数，而爸爸才是去改爷爷的虚函数的。
+
+而一个对象通过指针可以找到这个类的虚表，从而找到自己对应的虚函数。不管是下面的哪种场景，虽然**bOb**是**基类**的**指针（引用）**，只能指向基类的部分，但是虚表指针亦属于基类部分。所以`bOb`可以访问到对象`bOb2`的虚表指针。`bOb2`的虚表指针指向类`B`的虚表，所以`bOb`可以访问到类`B(或C`)的`vtbl`。
+
+```C++
+// 1
+B bOb2;
+A &bOb = bOb2;
+// 2
+C bOb2;
+B &bOb = bOb2;
+// 3
+C bOb2;
+A &bOb = bOb2;
+// 4
+C bOb2;
+A *bOb = &bOb2;
+```
 
 
 
@@ -226,4 +398,3 @@ void clobber(Base &b){
 
 
 
-未完待续。
