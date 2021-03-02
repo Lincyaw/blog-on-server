@@ -150,3 +150,71 @@ int main()
 | [&,identifier_list] | identifier_list是一个逗号分隔的列表，包含0个或多个来自所在函数的变量，这些变量采用值捕获的方式，其他变量则被隐式捕获，采用引用方式传递，identifier_list中的名字前面不能使用&。 |
 | [=,identifier_list] | identifier_list中的变量采用引用方式捕获，而被隐式捕获的变量都采用按值传递的方式捕获。identifier_list中的名字不能包含this，且这些名字面前必须使用&。 |
 |         []          | 空捕获列表，Lambda不能使用所在函数中的变量。                 |
+
+
+
+
+
+# 函数对象包装器 std::funtion
+
+> 引用自[现代C++教程]([https://changkun.de/modern-cpp/zh-cn/03-runtime/index.html#3-2-%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1%E5%8C%85%E8%A3%85%E5%99%A8](https://changkun.de/modern-cpp/zh-cn/03-runtime/index.html#3-2-函数对象包装器))
+
+C++11的`std::function`是一种通用、多态的函数封装， 它的实例可以对任何可以调用的目标实体进行存储、复制和调用操作， 它也是对 C++中现有的可调用实体的一种类型安全的包裹（相对来说，函数指针的调用不是类型安全的）， 换句话说，就是函数的容器。当我们有了函数的容器之后便能够更加方便的将函数、函数指针作为对象进行处理。
+
+如下面的代码:
+
+```C++
+#include <functional>
+#include <iostream>
+
+int foo(int para) {
+    return para;
+}
+
+int main() {
+    // std::function 包装了一个返回值为 int, 参数为 int 的函数
+    std::function<int(int)> func = foo;
+
+    int important = 10;
+    std::function<int(int)> func2 = [&](int value) -> int {
+        return 1+value+important;
+    };
+    std::cout << func(10) << std::endl;
+    std::cout << func2(10) << std::endl;
+}
+```
+
+
+
+## std::bind和std::placeholder
+
+而 `std::bind` 则是用来绑定函数调用的参数的， 它解决的需求是我们有时候可能并不一定能够一次性获得调用某个函数的全部参数，通过这个函数， 我们可以将部分调用参数提前绑定到函数身上成为一个新的对象，然后在参数齐全后，完成调用。 例如：
+
+```c++
+#include <iostream>
+#include <functional>
+using namespace std;
+int foo(int a, int b, int c) {
+    cout<<a<<" "<<b<<" "<<c<<endl;
+    return a+b+c;
+}
+int main() {
+    // 将参数1,2绑定到函数 foo 上，但是使用 std::placeholders::_1 来对第一个参数进行占位
+    auto bindFoo = std::bind(foo, 1, std::placeholders::_1,2);
+    cout<<bindFoo(2)<<endl;
+    auto bindFoo2 = std::bind(foo, 1, std::placeholders::_4,2);
+    cout<<bindFoo2(9,2,3,5)<<endl;
+}
+```
+
+`std::placeholders::_4`表示输入的第四个参数是作为调用`foo`的第二个参数(因为在第二个参数的位置)
+
+上述代码的结果为:
+
+```C++
+1 2 2
+5
+1 5 2
+8
+```
+

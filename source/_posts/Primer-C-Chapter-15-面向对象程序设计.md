@@ -1,11 +1,8 @@
 ---
-
-
 title: Chapter 15 面向对象程序设计
 date: 2020-12-05 09:51:36
 tags: 
-	- Primer C++
-	- C++ Primer Plus
+	- C++
 	- 虚函数
 categories: 
 	- 学习
