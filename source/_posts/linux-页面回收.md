@@ -45,9 +45,9 @@ categories:
 
 	- `page->_refcount = 1`
 	- `page->_mapcount = 0`
-	- 设置``PG_swapbacked`标志位
-	- 加入``LRU_ACTIVE_ANON`链表中，并设置`PG_lru`标志位
-	- `page->mapping`指向VMA中的``anon_vma`数据结构
+	- 设置`PG_swapbacked`标志位
+	- 加入`LRU_ACTIVE_ANON`链表中，并设置`PG_lru`标志位
+	- `page->mapping`指向VMA中的`anon_vma`数据结构
 
 ## 匿名页面的使用
 
@@ -135,7 +135,25 @@ categories:
 
 # 页面产生的细节
 
-在上面提到了page数据结构的两个成员：`_refcount`以及`_mapcount`。这是page中非常重要的两个引用计数，两者看起来相似，但又不同。
+## 缺页中断
+
+在匿名页面的产生的第一条和第二条都提到了缺页中断，从而产生了匿名页面。
+
+`handle_mm_fault()`函数是处理进程地址空间缺页异常的核心函数，他的实现与架构无关。
+
+如下图所示，异常的地址出现在用户地址空间，通过`find_vma()`函数查找该VMA，如果没有找到，说明就有问题。因此返回`vm_fault_t`类型的错误。
+
+如果找到了VMA，则根据不同的判断条件来确定缺页中断是哪一种类型。
+
+![](https://lincyaw.xyz/blogimg/interrupt.jpg)
+
+匿名页产生涉及到的函数就包括了`do_anonymous_page()`，`do_swap_page()`，`do_wp_page()`。
+
+
+
+
+
+在上面还提到了page数据结构的两个成员：`_refcount`以及`_mapcount`。这是page中非常重要的两个引用计数，两者看起来相似，但又不同。
 
 下面进行详细说明
 
