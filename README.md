@@ -24,21 +24,21 @@
 ```shell
 sudo apt-get install git
 
-sudo apt-get install npm //安装npm
-sudo npm i -g npm //升级到最新版本
+sudo apt-get install npm # 安装npm
+sudo npm i -g npm # 升级到最新版本
 
-sudo npm i -g n   //安装node.js的版本管理工具
-sudo n latest  //安装最新版本
-sudo n stable  //安装稳定版
+sudo npm i -g n   # 安装node.js的版本管理工具
+# sudo n latest  # 安装最新版本
+sudo n stable  # 安装稳定版
 
-npm install -g hexo-cli  //安装hexo
-npm install hexo-deployer-git --save //安装deployer工具
+npm install -g hexo-cli  # 安装hexo
+npm install hexo-deployer-git --save # 安装deployer工具
 
 
-wget https://github.com/jgm/pandoc/releases/download/2.10.1/pandoc-2.10.1-1-amd64.deb   //linux中下载pandoc , win中自行下载
+wget https://github.com/jgm/pandoc/releases/download/2.10.1/pandoc-2.10.1-1-amd64.deb   # linux中下载pandoc , win中自行下载
 sudo dpkg -i pandoc-2.10.1-1-amd64.deb
-npm uninstall hexo-renderer-marked --save   //自带的公式渲染不太好
-npm install hexo-renderer-pandoc --save    //用pandoc
+npm uninstall hexo-renderer-marked --save   # 自带的公式渲染不太好
+npm install hexo-renderer-pandoc --save    # 用pandoc
 ```
 
 上传三板斧
