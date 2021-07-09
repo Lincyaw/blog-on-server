@@ -53,3 +53,15 @@ hexo clean && hexo g -d   // 清除已有文件+生成+部署
 
 在装好之后发现别人用[宝塔面板](https://cloud.tencent.com/developer/article/1662792)做的也太轻松了吧, 我搞那个hook搞了半天QAQ. 但是必须要centos用
 
+
+
+
+
+# 2021-7-10 更新
+
+将环境迁移到了docker上。
+
+```
+docker run -it -v /mnt/c/Users/81475/Desktop/blog-on-server:/blog-on-server lincyaw/hexo:dev /bin/sh
+```
+
